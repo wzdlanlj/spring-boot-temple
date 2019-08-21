@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.xkun.dao.CommodityMapper" >
+  <resultMap id="BaseResultMap" type="xyz.xkun.po.Commodity" >
+    <id column="fk_sp_no" property="fkSpNo" jdbcType="INTEGER" />
+    <result column="fk_sp_name" property="fkSpName" jdbcType="VARCHAR" />
+    <result column="fk_sp_price" property="fkSpPrice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fk_sp_no, fk_sp_name, fk_sp_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodity
+    where fk_sp_no = #{fkSpNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commodity
+    where fk_sp_no = #{fkSpNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="xyz.xkun.po.Commodity" >
+    insert into commodity (fk_sp_no, fk_sp_name, fk_sp_price
+      )
+    values (#{fkSpNo,jdbcType=INTEGER}, #{fkSpName,jdbcType=VARCHAR}, #{fkSpPrice,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.xkun.po.Commodity" >
+    insert into commodity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fkSpNo != null" >
+        fk_sp_no,
+      </if>
+      <if test="fkSpName != null" >
+        fk_sp_name,
+      </if>
+      <if test="fkSpPrice != null" >
+        fk_sp_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fkSpNo != null" >
+        #{fkSpNo,jdbcType=INTEGER},
+      </if>
+      <if test="fkSpName != null" >
+        #{fkSpName,jdbcType=VARCHAR},
+      </if>
+      <if test="fkSpPrice != null" >
+        #{fkSpPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.xkun.po.Commodity" >
+    update commodity
+    <set >
+      <if test="fkSpName != null" >
+        fk_sp_name = #{fkSpName,jdbcType=VARCHAR},
+      </if>
+      <if test="fkSpPrice != null" >
+        fk_sp_price = #{fkSpPrice,jdbcType=REAL},
+      </if>
+    </set>
+    where fk_sp_no = #{fkSpNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.xkun.po.Commodity" >
+    update commodity
+    set fk_sp_name = #{fkSpName,jdbcType=VARCHAR},
+      fk_sp_price = #{fkSpPrice,jdbcType=REAL}
+    where fk_sp_no = #{fkSpNo,jdbcType=INTEGER}
+  </update>
+</mapper>

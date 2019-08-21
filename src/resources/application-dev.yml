@@ -1,0 +1,9 @@
+#数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://115.159.39.149:3306/fk_cs?useUnicode=true&characterEncoding=utf8
+    username: fkun
+    password: 330322
+
+

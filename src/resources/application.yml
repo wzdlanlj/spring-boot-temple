@@ -1,0 +1,17 @@
+server:
+  port: 8989
+
+spring:
+  profiles:
+    active: dev
+    freemarker:
+      template-loader-path: classpath:/views/
+      charset: UTF-8
+      suffix: .ftl
+      content-type: text/html
+
+#mybatis整合的配置
+mybatis:
+  mapper-locations: xyz/xkun/mappers/*.xml
+  type-aliases-package: xyz.xkun.querys;xyz.xkun.vo
+
